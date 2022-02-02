@@ -82,7 +82,7 @@ void task7(int *a, int size) {
 
     for (int i = 0; i < size; i++)
         cout << a[i] << " ";
-    //cout << endl;
+    cout << endl;
 
 }
 
