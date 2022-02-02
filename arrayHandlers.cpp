@@ -28,7 +28,7 @@ void fillArrayWithRandom(int *a, int n, int &size) {
 
     srand(time(nullptr));
     for (int i = 0; i < size; i++) {
-        a[i] = rand() % 100;
+        a[i] = rand() % 99 + 1;
     }
 }
 
