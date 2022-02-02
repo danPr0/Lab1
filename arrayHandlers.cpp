@@ -1,22 +1,39 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <windows.h>
-#include <string>
+#include <cmath>
 #include "arrayHandlers.h"
 
 using namespace std;
 
-void fillArrayWithRandom(int *a, int size) {
+void arrayOutput(int *a, int size) {
+    int maxLength = 2;
+    for (int i = 0; i < size; i++)
+        if (maxLength < int(log10(a[i]) + 1))
+            maxLength = int(log10(a[i]) + 1);
+
+    for (int i = 0; i < size; i++) {
+        if (i % 5 == 0)
+            cout << endl;
+        for (int j = 0; j < maxLength - int(log10(a[i]) + 1); j++)
+            cout << " ";
+        cout << a[i] << " ";
+    }
+    cout << endl;
+}
+
+void fillArrayWithRandom(int *a, int n, int &size) {
+    cout << "Specify array's size (from 1 to " << n << "):" << endl;
+    cin >> size;
+
     srand(time(nullptr));
     for (int i = 0; i < size; i++) {
         a[i] = rand() % 100;
     }
 }
 
-int fillArrayWithKeyboard(int *a, int n) {
+void fillArrayWithKeyboard(int *a, int n, int &size) {
     int i = 0;
-    int size = 0;
 
     while (i < n) {
         int value;
@@ -30,7 +47,6 @@ int fillArrayWithKeyboard(int *a, int n) {
         a[i] = value;
         i++;
     }
-    return size;
 }
 
 void task4(int *a, int size) {
@@ -43,9 +59,7 @@ void task4(int *a, int size) {
         a[size - 1] = t1;
     }
 
-    for (int i = 0; i < size; i++)
-        cout << a[i] << " ";
-    cout << endl;
+    arrayOutput(a, size);
 }
 
 void task5(int *a, int size) {
@@ -58,10 +72,7 @@ void task5(int *a, int size) {
         a[0] = t1;
     }
 
-
-    for (int i = 0; i < size; i++)
-        cout << a[i] << " ";
-    cout << endl;
+    arrayOutput(a, size);
 }
 
 void task7(int *a, int size) {
@@ -80,10 +91,7 @@ void task7(int *a, int size) {
         a[i] = temp;
     }
 
-    for (int i = 0; i < size; i++)
-        cout << a[i] << " ";
-    cout << endl;
-
+    arrayOutput(a, size);
 }
 
 void task10(int *a, int &size, int element) {
@@ -100,9 +108,7 @@ void task10(int *a, int &size, int element) {
     size++;
     a[maxIndex + 1] = element;
 
-    for (int i = 0; i < size; i++)
-        cout << a[i] << " ";
-    cout << endl;
+    arrayOutput(a, size);
 }
 
 void task11(int *a, int &size, int element) {
@@ -119,7 +125,5 @@ void task11(int *a, int &size, int element) {
     size++;
     a[maxIndex] = element;
 
-    for (int i = 0; i < size; i++)
-        cout << a[i] << " ";
-    cout << endl;
+    arrayOutput(a, size);
 }

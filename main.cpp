@@ -9,37 +9,28 @@ int getUserInstruction() {
     cout << "Enter your instruction (1 - fill array with random values, "
             "2 - enter values with keyboard, 9 - exit):" << endl;
     cin >> instruction;
-    
+
     return instruction;
 }
 
 int main() {
-    int n = 5;
+    int n = 13;
     int size = 0;
-    int *a = new int(n + 1);
+    int *a = new int(1000);
 
-    while (true) {
-        int instruction = getUserInstruction();
+    int instruction = getUserInstruction();
 
-        if (instruction == 1) {
-            while (size < 1 || size > n) {
-                cout << "Specify array's size (from 1 to " << n << "):" << endl;
-                cin >> size;
-            }
-            fillArrayWithRandom(a, size);
-            break;
-        }
-        else if (instruction == 2) {
-            size = fillArrayWithKeyboard(a, n);
-            break;
-        }
-        else if (instruction == 9)
-            break;
-    }
+    if (instruction == 1)
+        fillArrayWithRandom(a, n, size);
+    else if (instruction == 2)
+        fillArrayWithKeyboard(a, n, size);
+    else if (instruction == 9)
+        return 0;
 
-    for (int i = 0; i < size; i++)
-        cout << a[i] << " ";
-    cout << endl;
+    if (size == 0)
+        return 0;
+
+    arrayOutput(a, size);
 
     task4(a, size);
     task5(a, size);
