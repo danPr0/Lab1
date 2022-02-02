@@ -19,7 +19,7 @@ void arrayOutput(int *a, int size) {
             cout << " ";
         cout << a[i] << " ";
     }
-    //cout << endl;
+    cout << endl;
 }
 
 void fillArrayWithRandom(int *a, int n, int &size) {
