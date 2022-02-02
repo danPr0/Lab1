@@ -16,7 +16,7 @@ int getUserInstruction() {
 int main() {
     int n = 13;
     int size = 0;
-    int *a = new int(1000);
+    int *a = new int[1000];
 
     int instruction = getUserInstruction();
 
