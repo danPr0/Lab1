@@ -33,10 +33,19 @@ int main() {
     arrayOutput(a, size);
 
     task4(a, size);
+    arrayOutput(a, size);
+
     task5(a, size);
+    arrayOutput(a, size);
+
     task7(a, size);
+    arrayOutput(a, size);
+
     task10(a, size, 10);
+    arrayOutput(a, size);
+
     task11(a, size, 11);
+    arrayOutput(a, size);
 
     return 0;
 }

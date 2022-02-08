@@ -58,8 +58,6 @@ void task4(int *a, int size) {
 
         a[size - 1] = t1;
     }
-
-    arrayOutput(a, size);
 }
 
 void task5(int *a, int size) {
@@ -71,8 +69,6 @@ void task5(int *a, int size) {
 
         a[0] = t1;
     }
-
-    arrayOutput(a, size);
 }
 
 void task7(int *a, int size) {
@@ -90,8 +86,6 @@ void task7(int *a, int size) {
         a[i - n] = a[i];
         a[i] = temp;
     }
-
-    arrayOutput(a, size);
 }
 
 void task10(int *a, int &size, int element) {
@@ -107,8 +101,6 @@ void task10(int *a, int &size, int element) {
     }
     size++;
     a[maxIndex + 1] = element;
-
-    arrayOutput(a, size);
 }
 
 void task11(int *a, int &size, int element) {
@@ -124,6 +116,4 @@ void task11(int *a, int &size, int element) {
     }
     size++;
     a[maxIndex] = element;
-
-    arrayOutput(a, size);
 }
