@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
+#include <exception>
+#include <stdexcept>
 #include "arrayHandlers.h"
 
 using namespace std;
@@ -49,7 +51,8 @@ void fillArrayWithKeyboard(int *a, int n, int &size) {
     }
 }
 
-void task4(int *a, int size) {
+//4 номер з попереднього списку
+void additional4(int *a, int size) {
     for (int j = 0; j < 2; j++) {
         int t1 = a[0];
 
@@ -60,7 +63,8 @@ void task4(int *a, int size) {
     }
 }
 
-void task5(int *a, int size) {
+//5 номер з попереднього списку
+void additional5(int *a, int size) {
     for (int j = 0; j < 2; j++) {
         int t1 = a[size - 1];
 
@@ -71,7 +75,8 @@ void task5(int *a, int size) {
     }
 }
 
-void task7(int *a, int size) {
+//7 номер з попереднього списку
+void additional7(int *a, int size) {
     int n = size / 2;
     if (size % 2 == 1) {
         int t = a[size - 1];
@@ -88,32 +93,48 @@ void task7(int *a, int size) {
     }
 }
 
-void task10(int *a, int &size, int element) {
-    int maxIndex = 0;
-
-    for (int i = 1; i < size; i++) {
-        if (a[maxIndex] < a[i])
-            maxIndex = i;
+//4 номер з нового списку
+void task4(int *a, int &size, int *arr_end, int *arr_max) {
+    if (arr_end == arr_max) {
+        throw exception();
     }
 
-    for (int i = size; i > maxIndex + 1; i--) {
+    int minIndex = 0;
+    int element;
+    cout << "Enter element:" << endl;
+    cin >> element;
+
+    for (int i = 1; a+i != arr_end; i++) {
+        if (a[minIndex] > a[i])
+            minIndex = i;
+    }
+
+    for (int i = size; i > minIndex + 1; i--) {
         a[i] = a[i - 1];
     }
     size++;
-    a[maxIndex + 1] = element;
+    a[minIndex + 1] = element;
 }
 
-void task11(int *a, int &size, int element) {
-    int maxIndex = 0;
-
-    for (int i = 1; i < size; i++) {
-        if (a[maxIndex] < a[i])
-            maxIndex = i;
+//5 номер з попереднього списку
+void task5(int *a, int &size, int *arr_end, int *arr_max) {
+    if (arr_end == arr_max) {
+        throw exception();
     }
 
-    for (int i = size; i > maxIndex; i--) {
+    int minIndex = 0;
+    int element;
+    cout << "Enter element:" << endl;
+    cin >> element;
+
+    for (int i = 1; a+i != arr_end; i++) {
+        if (a[minIndex] > a[i])
+            minIndex = i;
+    }
+
+    for (int i = size; i > minIndex; i--) {
         a[i] = a[i - 1];
     }
     size++;
-    a[maxIndex] = element;
+    a[minIndex] = element;
 }

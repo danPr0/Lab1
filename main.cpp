@@ -13,6 +13,18 @@ int getUserInstruction() {
     return instruction;
 }
 
+bool ifPrime(int a) {
+    bool flag = a > 1;
+    int d = 2;
+
+    while (flag && d * d <= a) {
+        flag = a % d != 0;
+        d++;
+    }
+
+    return flag;
+}
+
 int main() {
     int n = 13;
     int size = 0;
@@ -32,20 +44,30 @@ int main() {
 
     arrayOutput(a, size);
 
-    task4(a, size);
+    additional4(a, size);
     arrayOutput(a, size);
 
-    task5(a, size);
+    additional5(a, size);
     arrayOutput(a, size);
 
-    task7(a, size);
+    additional7(a, size);
     arrayOutput(a, size);
 
-    task10(a, size, 10);
-    arrayOutput(a, size);
+    try {
+        task4(a, size, a + size, a + n);
+        arrayOutput(a, size);
+    }
+    catch (const exception &e) {
+        cout << "RANGE CHECK ERROR";
+    }
 
-    task11(a, size, 11);
-    arrayOutput(a, size);
+    try {
+        task5(a, size, a + size, a + n);
+        arrayOutput(a, size);
+    }
+    catch (const exception &e) {
+        cout << "RANGE CHECK ERROR";
+    }
 
     return 0;
 }
