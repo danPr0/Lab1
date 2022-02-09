@@ -1,16 +1,21 @@
 #include <iostream>
+#include <fstream>
 #include "arrayHandlers.h"
 
 using namespace std;
 
-int getUserInstruction() {
-    int instruction;
+string getInputPath() {
+    string path;
 
-    cout << "Enter your instruction (1 - fill array with random values, "
-            "2 - enter values with keyboard, 9 - exit):" << endl;
-    cin >> instruction;
+    cout << "Enter path to input file" << endl;
+    getline(cin, path);
 
-    return instruction;
+    cout << path;
+
+    if (path.empty())
+        path = "in.txt";
+
+    return path;
 }
 
 bool ifPrime(int a) {
@@ -28,21 +33,22 @@ bool ifPrime(int a) {
 int main() {
     int n = 13;
     int size = 0;
-    int *a = new int[1000];
+    int *a = new int[13];
+    ifstream fin;
 
-    int instruction = getUserInstruction();
+    string input_path = getInputPath();
+    fin.open(input_path);
 
-    if (instruction == 1)
-        fillArrayWithRandom(a, n, size);
-    else if (instruction == 2)
-        fillArrayWithKeyboard(a, n, size);
-    else if (instruction == 9)
-        return 0;
+    while (!fin.is_open()) {
+        input_path = getInputPath();
+        fin.open(input_path);
+    }
 
-    if (size == 0)
-        return 0;
+    a = getArrayFromFile(fin, a, size, n, a + size, a + n - 1);
 
     arrayOutput(a, size);
+
+    fin.close();
 
     additional4(a, size);
     arrayOutput(a, size);

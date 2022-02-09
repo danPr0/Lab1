@@ -4,6 +4,7 @@
 #include <cmath>
 #include <exception>
 #include <stdexcept>
+#include <fstream>
 #include "arrayHandlers.h"
 
 using namespace std;
@@ -22,6 +23,34 @@ void arrayOutput(int *a, int size) {
         cout << a[i] << " ";
     }
     cout << endl;
+}
+
+int* enlargeArray(int *a, int n) {
+    int *b = new int[2 * n];
+
+    for (int i = 0; i < n; ++i) {
+        b[i] = a[i];
+    }
+    delete a;
+
+    return b;
+}
+
+int* getArrayFromFile(ifstream &fin, int *a, int &size, int &n, int *arr_end, int *arr_max) {
+    while (!fin.eof()) {
+        fin >> arr_end[0];
+        if (arr_end == arr_max) {
+            a = enlargeArray(a, n);
+            arr_end = a + n - 1;
+            n *= 2;
+            arr_max = a + n - 1;
+            cout << "MEMORY ALLOC " << n << endl;
+        }
+        arr_end++;
+        size++;
+    }
+
+    return a;
 }
 
 void fillArrayWithRandom(int *a, int n, int &size) {
