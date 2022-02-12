@@ -10,8 +10,6 @@ string getInputPath() {
     cout << "Enter path to input file" << endl;
     getline(cin, path);
 
-    cout << path;
-
     if (path.empty())
         path = "in.txt";
 
@@ -32,8 +30,9 @@ bool ifPrime(int a) {
 
 int main() {
     int n = 13;
-    int size = 0;
-    int *a = new int[13];
+    int* a = new int[n];
+    int* arr_end = a;
+    int* arr_max = a + n;
     ifstream fin;
 
     string input_path = getInputPath();
@@ -44,36 +43,27 @@ int main() {
         fin.open(input_path);
     }
 
-    a = getArrayFromFile(fin, a, size, n, a + size, a + n - 1);
-
-    arrayOutput(a, size);
+    if (!getArrayFromFile(fin, a, arr_end, arr_max))
+        return 0;
 
     fin.close();
 
-    additional4(a, size);
-    arrayOutput(a, size);
+    arrayOutput(a, arr_end);
 
-    additional5(a, size);
-    arrayOutput(a, size);
+    additional4(a, arr_end);
+    arrayOutput(a, arr_end);
 
-    additional7(a, size);
-    arrayOutput(a, size);
+    additional5(a, arr_end);
+    arrayOutput(a, arr_end);
 
-    try {
-        task4(a, size, a + size, a + n);
-        arrayOutput(a, size);
-    }
-    catch (const exception &e) {
-        cout << "RANGE CHECK ERROR";
-    }
+    additional7(a, arr_end);
+    arrayOutput(a, arr_end);
 
-    try {
-        task5(a, size, a + size, a + n);
-        arrayOutput(a, size);
-    }
-    catch (const exception &e) {
-        cout << "RANGE CHECK ERROR";
-    }
+    task4(a, arr_end, arr_max);
+    arrayOutput(a, arr_end);
+
+    task5(a, arr_end, arr_max);
+    arrayOutput(a, arr_end);
 
     return 0;
 }

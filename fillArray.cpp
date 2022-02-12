@@ -8,7 +8,7 @@ int main() {
     fout.open("cmake-build-debug/in.txt");
     srand(time(nullptr));
 
-    for (int i = 0; i < 15; ++i) {
+    for (int i = 0; i < 14; ++i) {
         fout << rand() % 99 + 1 << "\n";
     }
     fout << rand() % 99 + 1;
