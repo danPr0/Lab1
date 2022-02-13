@@ -28,45 +28,45 @@ bool ifPrime(int a) {
 int main() {
     int n = 13;
     int size = 0;
-    int *a = new int[1000];
+    int* a = new int [n];
 
     int instruction = getUserInstruction();
 
     if (instruction == 1)
-        fillArrayWithRandom(a, n, size);
+        fillArrayWithRandom(a, size, n);
     else if (instruction == 2)
-        fillArrayWithKeyboard(a, n, size);
+        fillArrayWithKeyboard(a, size, n);
     else if (instruction == 9)
         return 0;
 
     if (size == 0)
         return 0;
 
-    arrayOutput(a, size);
+    arrayOutput(a, size, "Default");
 
-    additional4(a, size);
-    arrayOutput(a, size);
+    additional4(a, a + size);
+    arrayOutput(a, size, "Additional4");
 
-    additional5(a, size);
-    arrayOutput(a, size);
+    additional5(a, a + size);
+    arrayOutput(a, size, "Additional5");
 
-    additional7(a, size);
-    arrayOutput(a, size);
+    additional7(a, a + size);
+    arrayOutput(a, size, "Additional7");
 
     try {
         task4(a, size, a + size, a + n);
-        arrayOutput(a, size);
+        arrayOutput(a, size, "Task4");
     }
     catch (const exception &e) {
-        cout << "RANGE CHECK ERROR";
+        arrayOutput(a, size, "RANGE CHECK ERROR");
     }
 
     try {
         task5(a, size, a + size, a + n);
-        arrayOutput(a, size);
+        arrayOutput(a, size, "Task5");
     }
     catch (const exception &e) {
-        cout << "RANGE CHECK ERROR";
+        arrayOutput(a, size, "RANGE CHECK ERROR");
     }
 
     return 0;
