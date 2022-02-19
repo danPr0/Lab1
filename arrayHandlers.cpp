@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void arrayOutput(int *a, int size, string task) {
+void arrayOutput(int* a, int size, string task) {
     cout << endl << task;
 
     int maxLength = 2;
