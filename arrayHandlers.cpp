@@ -33,20 +33,22 @@ void saveArrayToFile(std::ofstream &fout, vector<int> arr) {
     }
 }
 
-void arrayOutput(vector<int> arr) {
+void arrayOutput(vector<int> arr, string task) {
+    cout << task;
+
     int maxLength = 2;
     for (int & it : arr)
         if (maxLength < int(log10(it) + 1))
             maxLength = int(log10(it) + 1);
 
     for (size_t i = 0; i < arr.size(); i++) {
+        if (i % 5 == 0)
+            cout << endl;
         for (int j = 0; j < maxLength - int(log10(arr.at(i)) + 1); j++)
             cout << " ";
         cout << arr.at(i) << " ";
-        if ((i + 1) % 5 == 0)
-            cout << endl;
     }
-    cout << endl;
+    cout << endl << endl;
 }
 
 //4 номер з попереднього списку

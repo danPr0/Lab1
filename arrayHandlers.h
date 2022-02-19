@@ -5,7 +5,7 @@ bool getArrayFromFile(std::ifstream &fin, vector<int> &arr);
 
 void saveArrayToFile(std::ofstream &fout, vector<int> arr);
 
-void arrayOutput(vector<int> arr);
+void arrayOutput(vector<int> arr, string task);
 
 void additional4(vector<int> &arr);
 

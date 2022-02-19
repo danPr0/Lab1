@@ -12,7 +12,7 @@ string getInputPath() {
     getline(cin, path);
 
     if (path.empty())
-        path = "out.txt";
+        path = "in.txt";
 
     return path;
 }
@@ -66,29 +66,31 @@ int main() {
     ifstream fin;
     ofstream fout;
 
+    cout << "Lab 2-1. Arrays : K-15 : Proshyn Danylo" << endl;
+
     validateInput(fin);
     if (!getArrayFromFile(fin, arr))
         return 0;
 
-    arrayOutput(arr);
+    arrayOutput(arr, "Default");
 
     validateOutput(fout);
     saveArrayToFile(fout, arr);
 
     additional4(arr);
-    arrayOutput(arr);
+    arrayOutput(arr, "Additional4");
 
     additional5(arr);
-    arrayOutput(arr);
+    arrayOutput(arr, "Additional5");
 
     additional7(arr);
-    arrayOutput(arr);
+    arrayOutput(arr, "Additional7");
 
     task4(arr);
-    arrayOutput(arr);
+    arrayOutput(arr, "Task4");
 
     task5(arr);
-    arrayOutput(arr);
+    arrayOutput(arr, "Task5");
 
     return 0;
 }
