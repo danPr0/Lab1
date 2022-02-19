@@ -16,14 +16,14 @@ int getUserInstruction() {
 int main() {
     int n = 13;
     int size = 0;
-    int *a = new int[13];
+    int* a = new int [n];
 
     int instruction = getUserInstruction();
 
     if (instruction == 1)
-        fillArrayWithRandom(a, n, size);
+        fillArrayWithRandom(a, size, n);
     else if (instruction == 2)
-        fillArrayWithKeyboard(a, n, size);
+        fillArrayWithKeyboard(a, size, n);
     else if (instruction == 9)
         return 0;
 

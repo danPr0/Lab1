@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void arrayOutput(int *a, int size) {
+void arrayOutput(int* a, int size) {
     int maxLength = 2;
     for (int i = 0; i < size; i++)
         if (maxLength < int(log10(a[i]) + 1))
@@ -22,7 +22,7 @@ void arrayOutput(int *a, int size) {
     cout << endl;
 }
 
-void fillArrayWithRandom(int *a, int n, int &size) {
+void fillArrayWithRandom(int* &a, int &size, int n) {
     cout << "Specify array's size (from 1 to " << n << "):" << endl;
     cin >> size;
 
@@ -32,7 +32,7 @@ void fillArrayWithRandom(int *a, int n, int &size) {
     }
 }
 
-void fillArrayWithKeyboard(int *a, int n, int &size) {
+void fillArrayWithKeyboard(int* &a, int &size, int n) {
     int i = 0;
 
     while (i < n) {
@@ -40,8 +40,12 @@ void fillArrayWithKeyboard(int *a, int n, int &size) {
 
         cout << "Enter " << i << " element:" << endl;
         cin >> value;
-        if (cin.eof())
+
+        if (cin.eof() || cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
             break;
+        }
 
         size++;
         a[i] = value;
