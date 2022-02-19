@@ -16,7 +16,7 @@ int getUserInstruction() {
 int main() {
     int n = 13;
     int size = 0;
-    int *a = new int[1000];
+    int *a = new int[13];
 
     int instruction = getUserInstruction();
 
@@ -30,21 +30,6 @@ int main() {
     if (size == 0)
         return 0;
 
-    arrayOutput(a, size);
-
-    task4(a, size);
-    arrayOutput(a, size);
-
-    task5(a, size);
-    arrayOutput(a, size);
-
-    task7(a, size);
-    arrayOutput(a, size);
-
-    task10(a, size, 10);
-    arrayOutput(a, size);
-
-    task11(a, size, 11);
     arrayOutput(a, size);
 
     return 0;
