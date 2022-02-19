@@ -7,141 +7,118 @@
 
 using namespace std;
 
-void arrayOutput(int* a, int* arr_end) {
-    int maxLength = 2;
-    for (int i = 0; a + i < arr_end; i++)
-        if (maxLength < int(log10(a[i]) + 1))
-            maxLength = int(log10(a[i]) + 1);
+bool getArrayFromFile(std::ifstream &fin, vector<int> &arr) {
+    while (!fin.eof()) {
+        int element;
+        fin >> element;
+        arr.push_back(element);
+    }
 
-    for (int i = 0; a + i != arr_end; i++) {
-        if (i % 5 == 0)
-            cout << endl;
-        for (int j = 0; j < maxLength - int(log10(a[i]) + 1); j++)
+    fin.close();
+    return !arr.empty();
+}
+
+void saveArrayToFile(std::ofstream &fout, vector<int> arr) {
+    int maxLength = 2;
+    for (int & it : arr)
+        if (maxLength < int(log10(it) + 1))
+            maxLength = int(log10(it) + 1);
+
+    for (size_t i = 0; i < arr.size(); i++) {
+        for (int j = 0; j < maxLength - int(log10(arr.at(i)) + 1); j++)
+            fout << " ";
+        fout << arr.at(i) << " ";
+        if ((i + 1) % 5 == 0)
+            fout << endl;
+    }
+}
+
+void arrayOutput(vector<int> arr) {
+    int maxLength = 2;
+    for (int & it : arr)
+        if (maxLength < int(log10(it) + 1))
+            maxLength = int(log10(it) + 1);
+
+    for (size_t i = 0; i < arr.size(); i++) {
+        for (int j = 0; j < maxLength - int(log10(arr.at(i)) + 1); j++)
             cout << " ";
-        cout << a[i] << " ";
+        cout << arr.at(i) << " ";
+        if ((i + 1) % 5 == 0)
+            cout << endl;
     }
     cout << endl;
 }
 
-bool enlargeArray(int* &a, int* &arr_end, int* &arr_max) {
-    int n = (int) (arr_max - a);
-    int* b = new(nothrow) int[2 * n];
-
-    if (b == nullptr)
-        return false;
-
-    for (int i = 0; i < n; ++i) {
-        b[i] = a[i];
-    }
-
-    delete [] a;
-    a = b;
-    arr_end = a + n;
-    arr_max = a + n * 2;
-
-    return true;
-}
-
-bool getArrayFromFile(ifstream &fin, int* &a, int* &arr_end, int* &arr_max) {
-    while (!fin.eof()) {
-        fin >> *arr_end;
-        arr_end++;
-
-        if (arr_end == arr_max) {
-            if (!enlargeArray(a, arr_end, arr_max))
-                return false;
-            cout << "MEMORY ALLOC " << arr_max - a << endl;
-        }
-    }
-
-    return true;
-}
-
 //4 номер з попереднього списку
-void additional4(int* a, int* arr_end) {
+void additional4(vector<int> &arr) {
     for (int j = 0; j < 2; j++) {
-        int t1 = a[0];
+        int t1 = arr.front();
 
-        for (int* i = a; i < arr_end - 1; i++)
-            *i = *(i + 1);
+        for (auto it = arr.begin(); it != arr.end(); ++it)
+            *it = *(it + 1);
 
-        *(arr_end - 1) = t1;
+        arr.back() = t1;
     }
 }
 
 //5 номер з попереднього списку
-void additional5(int* a, int* arr_end) {
+void additional5(vector<int> &arr) {
     for (int j = 0; j < 2; j++) {
-        int t1 = *(arr_end - 1);
+        int t1 = arr.back();
 
-        for (int* i = arr_end - 1; i > a; i--)
-            *i = *(i - 1);
+        for (auto it = arr.end(); it != arr.begin(); --it)
+            *it = *(it - 1);
 
-        a[0] = t1;
+        arr.front() = t1;
     }
 }
 
 //7 номер з попереднього списку
-void additional7(int* a, int* arr_end) {
-    int size = (int)(arr_end - a);
+void additional7(vector<int> &arr) {
+    int size = arr.size();
     int n = size / 2;
-    if (size % 2 == 1) {
-        int t = a[size - 1];
-        for (int i = size - 1; i > n; i--)
-            a[i] = a[i - 1];
-        a[n] = t;
+
+    if (arr.size() % 2 == 1) {
+        auto t = arr.end();
+        for (auto it = arr.end(); it != arr.begin() + n; --it)
+            *it = *(it - 1);
+        *(arr.begin() + n) = *t;
         n++;
     }
 
-    for (int i = size - 1; i > n - 1; i--) {
-        int temp = a[i - n];
-        a[i - n] = a[i];
-        a[i] = temp;
+    for (auto it = arr.end(); it != arr.begin() + n - 1; --it) {
+        int temp = *(it - n);
+        *(it - n) = *it;
+        *it = temp;
     }
 }
 
 //4 номер з нового списку
-void task4(int* &a, int* &arr_end, int* &arr_max) {
-    if (arr_end == arr_max) {
-        enlargeArray(a, arr_end, arr_max);
-    }
-
-    int minIndex = 0;
+void task4(vector<int> &arr) {
+    auto minIndex = arr.begin();
     int element;
     cout << "Enter element:" << endl;
     cin >> element;
 
-    for (int i = 1; a+i != arr_end; i++) {
-        if (a[minIndex] > a[i])
-            minIndex = i;
+    for (auto it = arr.begin() + 1; it != arr.end() - 1; ++it) {
+        if (*minIndex > *it)
+            minIndex = it;
     }
 
-    for (int* elem = arr_end; elem != a + minIndex + 1; elem--) {
-        *elem = *(elem - 1);
-    }
-    arr_end++;
-    a[minIndex + 1] = element;
+    arr.insert(minIndex + 1, element);
 }
 
 //5 номер з попереднього списку
-void task5(int* &a, int* &arr_end, int* &arr_max) {
-    if (arr_end == arr_max) {
-        enlargeArray(a, arr_end, arr_max);
-    }
-
-    int minIndex = 0;
+void task5(vector<int> &arr) {
+    auto minIndex = arr.begin();
     int element;
     cout << "Enter element:" << endl;
     cin >> element;
 
-    for (int i = 1; a+i != arr_end; i++) {
-        if (a[minIndex] > a[i])
-            minIndex = i;
+    for (auto it = arr.begin() + 1; it != arr.end() - 1; ++it) {
+        if (*minIndex > *it)
+            minIndex = it;
     }
 
-    for (int* elem = arr_end; elem != a + minIndex; elem--) {
-        *elem = *(elem - 1);
-    }
-    arr_end++;
-    a[minIndex] = element;
+    arr.insert(minIndex, element);
 }

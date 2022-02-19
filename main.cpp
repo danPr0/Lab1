@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "arrayHandlers.h"
 
 using namespace std;
@@ -11,9 +12,41 @@ string getInputPath() {
     getline(cin, path);
 
     if (path.empty())
-        path = "in.txt";
+        path = "out.txt";
 
     return path;
+}
+
+string getOutputPath() {
+    string path;
+
+    cout << "Enter path to output file" << endl;
+    getline(cin, path);
+
+    if (path.empty())
+        path = "out.txt";
+
+    return path;
+}
+
+void validateInput(std::ifstream &fin) {
+    string input_path = getInputPath();
+    fin.open(input_path);
+
+    while (!fin.is_open()) {
+        input_path = getInputPath();
+        fin.open(input_path);
+    }
+}
+
+void validateOutput(std::ofstream &fout) {
+    string output_path = getOutputPath();
+    fout.open(output_path);
+
+    while (!fout.is_open()) {
+        output_path = getInputPath();
+        fout.open(output_path);
+    }
 }
 
 bool ifPrime(int a) {
@@ -29,41 +62,33 @@ bool ifPrime(int a) {
 }
 
 int main() {
-    int n = 13;
-    int* a = new int[n];
-    int* arr_end = a;
-    int* arr_max = a + n;
+    vector<int> arr;
     ifstream fin;
+    ofstream fout;
 
-    string input_path = getInputPath();
-    fin.open(input_path);
-
-    while (!fin.is_open()) {
-        input_path = getInputPath();
-        fin.open(input_path);
-    }
-
-    if (!getArrayFromFile(fin, a, arr_end, arr_max))
+    validateInput(fin);
+    if (!getArrayFromFile(fin, arr))
         return 0;
 
-    fin.close();
+    arrayOutput(arr);
 
-    arrayOutput(a, arr_end);
+    validateOutput(fout);
+    saveArrayToFile(fout, arr);
 
-    additional4(a, arr_end);
-    arrayOutput(a, arr_end);
+    additional4(arr);
+    arrayOutput(arr);
 
-    additional5(a, arr_end);
-    arrayOutput(a, arr_end);
+    additional5(arr);
+    arrayOutput(arr);
 
-    additional7(a, arr_end);
-    arrayOutput(a, arr_end);
+    additional7(arr);
+    arrayOutput(arr);
 
-    task4(a, arr_end, arr_max);
-    arrayOutput(a, arr_end);
+    task4(arr);
+    arrayOutput(arr);
 
-    task5(a, arr_end, arr_max);
-    arrayOutput(a, arr_end);
+    task5(arr);
+    arrayOutput(arr);
 
     return 0;
 }

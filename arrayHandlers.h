@@ -1,13 +1,18 @@
-bool getArrayFromFile(std::ifstream &fin, int* &a, int* &arr_end, int* &arr_max);
+#include <vector>
+using namespace std;
 
-void arrayOutput(int* a, int* arr_end);
+bool getArrayFromFile(std::ifstream &fin, vector<int> &arr);
 
-void additional4(int* a, int* arr_end);
+void saveArrayToFile(std::ofstream &fout, vector<int> arr);
 
-void additional5(int* a, int* arr_end);
+void arrayOutput(vector<int> arr);
 
-void additional7(int* a, int* arr_end);
+void additional4(vector<int> &arr);
 
-void task4(int* &a, int* &arr_end, int* &arr_max);
+void additional5(vector<int> &arr);
 
-void task5(int* &a, int* &arr_end, int* &arr_max);
+void additional7(vector<int> &arr);
+
+void task4(vector<int> &arr);
+
+void task5(vector<int> &arr);
