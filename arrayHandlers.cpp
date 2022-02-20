@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void arrayOutput(int* a, int size, string task) {
+void arrayOutput(int* a, int size) {
     cout << endl << task;
 
     int maxLength = 2;
@@ -21,7 +21,7 @@ void arrayOutput(int* a, int size, string task) {
             cout << " ";
         cout << a[i] << " ";
     }
-    cout << endl << endl;
+    cout << endl;
 }
 
 void fillArrayWithRandom(int* &a, int &size, int n) {
