@@ -16,6 +16,37 @@ string getInputPath() {
     return path;
 }
 
+string getOutputPath() {
+    string path;
+
+    cout << "Enter path to output file" << endl;
+    getline(cin, path);
+
+    if (path.empty())
+        path = "out.txt";
+
+    return path;
+}
+
+void validateInput(std::ifstream &fin) {
+    string input_path = getInputPath();
+    fin.open(input_path);
+
+    while (!fin.is_open()) {
+        input_path = getInputPath();
+        fin.open(input_path);
+    }
+}
+
+void validateOutput(std::ofstream &fout) {
+    string output_path = getOutputPath();
+    fout.open(output_path);
+
+    while (!fout.is_open()) {
+        output_path = getInputPath();
+        fout.open(output_path);
+    }
+}
 bool ifPrime(int a) {
     bool flag = a > 1;
     int d = 2;
@@ -34,36 +65,33 @@ int main() {
     int* arr_end = a;
     int* arr_max = a + n;
     ifstream fin;
+    ofstream fout;
 
-    string input_path = getInputPath();
-    fin.open(input_path);
+    cout << "Lab 2-1. Arrays : K-15 : Proshyn Danylo" << endl;
 
-    while (!fin.is_open()) {
-        input_path = getInputPath();
-        fin.open(input_path);
-    }
-
+    validateInput(fin);
     if (!getArrayFromFile(fin, a, arr_end, arr_max))
         return 0;
 
-    fin.close();
+    arrayOutput(a, arr_end, "Default");
 
-    arrayOutput(a, arr_end);
+    validateOutput(fout);
+    saveArrayToFile(fout, a, arr_end);
 
     additional4(a, arr_end);
-    arrayOutput(a, arr_end);
+    arrayOutput(a, arr_end, "Additional4");
 
     additional5(a, arr_end);
-    arrayOutput(a, arr_end);
+    arrayOutput(a, arr_end, "Additional5");
 
     additional7(a, arr_end);
-    arrayOutput(a, arr_end);
+    arrayOutput(a, arr_end, "Additional7");
 
     task4(a, arr_end, arr_max);
-    arrayOutput(a, arr_end);
+    arrayOutput(a, arr_end, "Task4");
 
     task5(a, arr_end, arr_max);
-    arrayOutput(a, arr_end);
+    arrayOutput(a, arr_end, "Task5");
 
     return 0;
 }

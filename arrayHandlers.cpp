@@ -7,7 +7,8 @@
 
 using namespace std;
 
-void arrayOutput(int* a, int* arr_end) {
+void arrayOutput(int* a, int* arr_end, string task) {
+    cout << task;
     int maxLength = 2;
     for (int i = 0; a + i < arr_end; i++)
         if (maxLength < int(log10(a[i]) + 1))
@@ -20,7 +21,7 @@ void arrayOutput(int* a, int* arr_end) {
             cout << " ";
         cout << a[i] << " ";
     }
-    cout << endl;
+    cout << endl << endl;
 }
 
 bool enlargeArray(int* &a, int* &arr_end, int* &arr_max) {
@@ -54,7 +55,23 @@ bool getArrayFromFile(ifstream &fin, int* &a, int* &arr_end, int* &arr_max) {
         }
     }
 
+    fin.close();
     return true;
+}
+
+void saveArrayToFile(std::ofstream &fout, int* &a, int* &arr_end) {
+    int maxLength = 2;
+    for (int i = 0; a + i != arr_end; i++)
+        if (maxLength < int(log10(a[i]) + 1))
+            maxLength = int(log10(a[i]) + 1);
+
+    for (int i = 0; a + i != arr_end; i++) {
+        for (int j = 0; j < maxLength - int(log10(a[i]) + 1); j++)
+            fout << " ";
+        fout << a[i] << " ";
+        if ((i + 1) % 5 == 0)
+            fout << endl;
+    }
 }
 
 //4 номер з попереднього списку
