@@ -8,7 +8,7 @@ using namespace std;
 string getInputPath() {
     string path;
 
-    cout << "Enter path to input file" << endl;
+    cout << endl << "Enter path to input file" << endl;
     getline(cin, path);
 
     if (path.empty())
@@ -20,7 +20,7 @@ string getInputPath() {
 string getOutputPath() {
     string path;
 
-    cout << "Enter path to output file" << endl;
+    cout << endl << "Enter path to output file" << endl;
     getline(cin, path);
 
     if (path.empty())

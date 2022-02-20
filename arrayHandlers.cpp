@@ -99,7 +99,7 @@ void additional7(vector<int> &arr) {
 void task4(vector<int> &arr) {
     auto minIndex = arr.begin();
     int element;
-    cout << "Enter element:" << endl;
+    cout << endl << "Enter element:" << endl;
     cin >> element;
 
     for (auto it = arr.begin() + 1; it != arr.end() - 1; ++it) {
@@ -114,7 +114,7 @@ void task4(vector<int> &arr) {
 void task5(vector<int> &arr) {
     auto minIndex = arr.begin();
     int element;
-    cout << "Enter element:" << endl;
+    cout << endl << "Enter element:" << endl;
     cin >> element;
 
     for (auto it = arr.begin() + 1; it != arr.end() - 1; ++it) {
