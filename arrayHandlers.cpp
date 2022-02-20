@@ -8,7 +8,7 @@
 using namespace std;
 
 void arrayOutput(int* a, int* arr_end, string task) {
-    cout << task;
+    cout << endl << task;
     int maxLength = 2;
     for (int i = 0; a + i < arr_end; i++)
         if (maxLength < int(log10(a[i]) + 1))
@@ -21,7 +21,7 @@ void arrayOutput(int* a, int* arr_end, string task) {
             cout << " ";
         cout << a[i] << " ";
     }
-    cout << endl << endl;
+    cout << endl;
 }
 
 bool enlargeArray(int* &a, int* &arr_end, int* &arr_max) {
