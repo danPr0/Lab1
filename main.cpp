@@ -17,6 +17,8 @@ int main() {
     int n = 13;
     int size = 0;
     int* a = new int [n];
+    
+    cout << "Lab 2-1. Arrays : K-15 : Proshyn Danylo" << endl;
 
     int instruction = getUserInstruction();
 
