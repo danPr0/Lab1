@@ -34,7 +34,7 @@ void saveArrayToFile(std::ofstream &fout, vector<int> arr) {
 }
 
 void arrayOutput(vector<int> arr, string task) {
-    cout << task;
+    cout << endl << task;
 
     int maxLength = 2;
     for (int & it : arr)
@@ -48,7 +48,7 @@ void arrayOutput(vector<int> arr, string task) {
             cout << " ";
         cout << arr.at(i) << " ";
     }
-    cout << endl << endl;
+    cout << endl;
 }
 
 //4 номер з попереднього списку
