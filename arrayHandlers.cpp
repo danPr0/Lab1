@@ -107,7 +107,7 @@ void task4(int* &a, int &size, int* arr_end, int* arr_max) {
 
     int minIndex = 0;
     int element;
-    cout << "Enter element:" << endl;
+    cout << endl << "Enter element:" << endl;
     cin >> element;
 
     for (int i = 1; a+i != arr_end; i++) {
@@ -130,7 +130,7 @@ void task5(int* &a, int &size, int* arr_end, int* arr_max) {
 
     int minIndex = 0;
     int element;
-    cout << "Enter element:" << endl;
+    cout << endl << "Enter element:" << endl;
     cin >> element;
 
     for (int i = 1; a+i != arr_end; i++) {
