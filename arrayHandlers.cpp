@@ -21,7 +21,7 @@ void arrayOutput(int* a, int* arr_end, string task) {
             cout << " ";
         cout << a[i] << " ";
     }
-    cout << endl << endl;
+    cout << endl;
 }
 
 bool enlargeArray(int* &a, int* &arr_end, int* &arr_max) {
